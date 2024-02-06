@@ -7,7 +7,13 @@ import 'dotenv/config';
 const port = process.env.PORT_APP || 3000;
 const host = process.env.HOST_APP || 'localhost';
 
-const fastify = Fastify({ logger: true });
+const fastify = Fastify({
+  logger: {
+      transport: {
+        target: "pino-pretty",
+      },
+    },
+});
 
 //CORS
 await fastify.register(cors, {});
