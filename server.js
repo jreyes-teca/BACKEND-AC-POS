@@ -2,6 +2,10 @@ import Fastify from "fastify";
 import cors from "@fastify/cors";
 import rutas from "./routes.js";
 import db from "./db/db.js";
+import 'dotenv/config';
+
+const port = process.env.PORT_APP || 3000;
+const host = process.env.HOST_APP || 'localhost';
 
 const fastify = Fastify({ logger: true });
 
@@ -24,7 +28,7 @@ async function database() {
 }
 
 try {
-  fastify.listen({ port: 3500 });
+  fastify.listen({host: host, port: port });
   database();
 } catch (err) {
   console.log(err);
